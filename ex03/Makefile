@@ -1,18 +1,27 @@
-SRCS = main.cpp Animal.cpp Dog.cpp Cat.cpp WrongCat.cpp WrongAnimal.cpp
-
+SRC_DIR = src
+SRCS			:=$(wildcard $(SRC_DIR)/*.cpp) \
+				main.cpp
 OBJS = $(SRCS:%.c=$(OBJS_DIR)/%.o)
-NAME = BarkMeow
-VPATH = .
+NAME = Materia
+VPATH = . src/
 
-I_DIRS := $(shell find . -type f -name "*.h" -exec dirname {} + | uniq)
+I_DIRS := $(shell find . -type f -name "*.hpp" -exec dirname {} + | uniq)
 INCLUDE = $(I_DIRS:%=-I%)
 
 CC = c++
-CFLAGS := -Wall -Werror -Wextra -fsanitize=address -g
+CFLAGS := -Wall -Werror -Wextra -std=c++11
 OBJS_DIR = ./objs
 
 ifdef LOG
 	CFLAGS	+=-D LOG=0
+endif
+
+ifdef SAN
+	CFLAGS	+=-fsanitize=address
+endif
+
+ifdef BUG
+	CFLAGS	+=-g
 endif
 
 RM = rm -f
@@ -20,7 +29,7 @@ RM = rm -f
 all:	$(NAME)
 
 $(NAME): $(OBJS_DIR) $(OBJS)
-	@$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(INCLUDE)
 	@echo "./$(NAME) made!"
 
 $(OBJS_DIR):
@@ -42,19 +51,25 @@ fclean: clean
 
 re: fclean all
 
-fsan:
-	@$(CFLAGS) = $(CFLAGS) fsanitize=address
-	@echo "Added fsanitize"
-
-desan:
-	@$(CFLAGS) -= " fsanitize=address"
-	@echo "Removed fsanitize"
-
 nolog:
 	@$(MAKE) LOG=1
 .PHONY: nolog
 
 relog: fclean nolog
 .PHONY: relog
+
+fsan:
+	@$(MAKE) SAN=1 BUG=1
+.PHONY: fsan
+
+resan: fclean fsan
+.PHONY: resan
+
+debug:
+	@$(MAKE) BUG=1
+.PHONY: debug
+
+rebug: fclean debug
+.PHONY: rebug
 
 .PHONY: all clean re fclean fsan desan

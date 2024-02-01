@@ -1,32 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   Animal.hpp                                         :+:    :+:            */
+/*   Cat.hpp                                            :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: bootjan <bootjan@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2024/01/12 00:56:47 by bootjan       #+#    #+#                 */
-/*   Updated: 2024/01/12 12:14:03 by bschaafs      ########   odam.nl         */
+/*   Created: 2024/01/12 01:03:04 by bootjan       #+#    #+#                 */
+/*   Updated: 2024/01/15 18:29:17 by bschaafs      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ANIMAL_HPP
-# define ANIMAL_HPP
+#ifndef CAT_HPP
+# define CAT_HPP
 
-# include <iostream>
+# include "Animal.hpp"
+# include "Brain.hpp"
 
-class Animal
+class Cat : public Animal
 {
-	protected:
-		std::string	_type;
+	private:
+		Brain*	_brain;
 	public:
-		Animal(void);
-		Animal(std::string type);
-		Animal(const Animal& original);
-		virtual	~Animal();
-		Animal&	operator=(const Animal& original);
-		const std::string			getType(void) const;
-		virtual void				makeSound(void) const;
+		Cat(void);
+		Cat(const Cat& original);
+		~Cat();
+		Cat&	operator=(const Cat& original);
+		void	makeSound(void) const;
+		void	eureka(const std::string& idea, size_t index);
+		void	printIdeas(void) const;
 };
 
 #endif

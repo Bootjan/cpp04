@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   Animal.cpp                                         :+:    :+:            */
+/*   AAnimal.cpp                                        :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: bootjan <bootjan@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/12 00:56:45 by bootjan       #+#    #+#                 */
-/*   Updated: 2024/01/12 12:11:18 by bschaafs      ########   odam.nl         */
+/*   Updated: 2024/01/12 17:04:08 by bschaafs      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Animal.hpp"
+#include "AAnimal.hpp"
 
 Animal::Animal(void)
 {

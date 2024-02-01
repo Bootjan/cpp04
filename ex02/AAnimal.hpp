@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   Animal.hpp                                         :+:    :+:            */
+/*   AAnimal.hpp                                        :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: bootjan <bootjan@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/12 00:56:47 by bootjan       #+#    #+#                 */
-/*   Updated: 2024/01/12 12:14:03 by bschaafs      ########   odam.nl         */
+/*   Updated: 2024/01/12 17:23:20 by bschaafs      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ class Animal
 		virtual	~Animal();
 		Animal&	operator=(const Animal& original);
 		const std::string			getType(void) const;
-		virtual void				makeSound(void) const;
+		virtual void				makeSound(void) const = 0;
 };
 
 #endif

@@ -1,41 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.cpp                                            :+:      :+:    :+:   */
+/*   Ice.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bootjan <bootjan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/12 01:07:21 by bootjan           #+#    #+#             */
-/*   Updated: 2024/01/15 21:39:21 by bootjan          ###   ########.fr       */
+/*   Created: 2024/01/12 17:36:02 by bschaafs          #+#    #+#             */
+/*   Updated: 2024/01/15 22:10:12 by bootjan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Cat.hpp"
+#include "Ice.hpp"
 
-Cat::Cat(void) : Animal("Cat")
+Ice::Ice(void)
+	: AMateria("ice")
 {
-	_type = "Cat";
-	std::cout << "Cat constructor" << std::endl;
 }
 
-Cat::Cat(const Cat& original) : Animal(original._type)
-{
-	std::cout << "Cat copy constructor" << std::endl;
-}
-
-Cat&	Cat::operator=(const Cat& original)
+Ice::Ice(const Ice& original)
+	: AMateria(original._type)
 {
 	_type = original._type;
-	std::cout << "Cat copy assignment operator called" << std::endl;
+}
+
+Ice&	Ice::operator=(const Ice& original)
+{
+	_type = original._type;
 	return *this;
 }
 
-Cat::~Cat()
+Ice*	Ice::clone(void) const
 {
-	std::cout << "Cat destructor" << std::endl;
+	Ice*	ret = new Ice();
+	ret->_type = _type;
+	return (ret);
 }
 
-void	Cat::makeSound(void) const
+void	Ice::use(ICharacter& type)
 {
-	std::cout << "Meow" << std::endl;
+	std::cout	<< "* shoots an ice bolt at " << type.getName()
+				<< " *" << std::endl;
 }
+
